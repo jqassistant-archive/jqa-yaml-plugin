@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.buschmais.jqassistant.plugin</groupId>
-    <artifactId>jqassistant.plugin.yaml</artifactId>
+    <artifactId>yaml</artifactId>
 
     <inceptionYear>2015</inceptionYear>
     <description>A YAML file scanner for jQAssistant.</description>
