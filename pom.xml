@@ -36,6 +36,10 @@
         <url>https://github.com/buschmais/jqa-yaml-plugin</url>
     </scm>
 
+    <properties>
+        <jqa-plugin-common.version>1.2-RC1</jqa-plugin-common.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -73,7 +77,7 @@
         <dependency>
             <groupId>com.buschmais.jqassistant.plugin</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
+            <version>${jqa-plugin-common.version}</version>
         </dependency>
         <dependency>
             <groupId>com.buschmais.jqassistant.core</groupId>
@@ -91,7 +95,7 @@
             <groupId>com.buschmais.jqassistant.plugin</groupId>
             <artifactId>common</artifactId>
             <type>test-jar</type>
-            <version>${project.version}</version>
+            <version>${jqa-plugin-common.version}</version>
         </dependency>
         <dependency>
             <groupId>com.buschmais.jqassistant.core</groupId>
