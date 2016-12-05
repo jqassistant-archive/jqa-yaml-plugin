@@ -1,0 +1,5 @@
+== jQAssistant YAML Plugin Version 1.2
+
+- Maven coordinates changed from `com.buschmais.jqassistant.plugin:jqassistant.plugin.yaml`
+  to `com.buschmais.jqassistant.plugin:yaml`.
+- No functional changes to version 1.1.3.
