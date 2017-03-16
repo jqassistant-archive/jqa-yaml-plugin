@@ -5,6 +5,15 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.nodes.Node;
+import org.yaml.snakeyaml.nodes.Tag;
+import org.yaml.snakeyaml.representer.Representer;
+import org.yaml.snakeyaml.resolver.Resolver;
+import org.yaml.snakeyaml.serializer.Serializer;
+
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
 import com.buschmais.jqassistant.core.scanner.api.ScannerPlugin.Requires;
@@ -15,15 +24,6 @@ import com.buschmais.jqassistant.plugin.common.api.scanner.AbstractScannerPlugin
 import com.buschmais.jqassistant.plugin.common.api.scanner.filesystem.FileResource;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLDocumentDescriptor;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLFileDescriptor;
-
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.nodes.Node;
-import org.yaml.snakeyaml.nodes.Tag;
-import org.yaml.snakeyaml.representer.Representer;
-import org.yaml.snakeyaml.resolver.Resolver;
-import org.yaml.snakeyaml.serializer.Serializer;
 
 @Requires(FileDescriptor.class)
 public class YAMLFileScannerPlugin extends AbstractScannerPlugin<FileResource, YAMLFileDescriptor> {
@@ -48,7 +48,7 @@ public class YAMLFileScannerPlugin extends AbstractScannerPlugin<FileResource, Y
         Representer representer = new Representer();
         DumperOptions options = new DumperOptions();
 
-        FileDescriptor fileDescriptor = context.peek(FileDescriptor.class);
+        FileDescriptor fileDescriptor = context.getCurrentDescriptor();
         YAMLFileDescriptor yamlFileDescriptor = store.addDescriptorType(fileDescriptor, YAMLFileDescriptor.class);
 
 
