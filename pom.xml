@@ -39,6 +39,7 @@
 
     <properties>
         <jqa-plugin-common.version>1.4-SNAPSHOT</jqa-plugin-common.version>
+        <snakeyaml.version>1.19</snakeyaml.version>
     </properties>
 
     <build>
@@ -128,7 +129,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.16</version>
+            <version>${snakeyaml.version}</version>
         </dependency>
     </dependencies>
 
