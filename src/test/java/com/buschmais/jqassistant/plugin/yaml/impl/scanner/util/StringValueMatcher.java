@@ -1,11 +1,10 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner.util;
 
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-
-import java.util.Collection;
 
 // @todo Write some usefull tests! Oliver B. Fischer, 24th May 2015
 public class StringValueMatcher extends TypeSafeMatcher<YAMLValueDescriptor> {

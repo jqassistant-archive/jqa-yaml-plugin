@@ -1,14 +1,15 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 
+import java.io.File;
+import java.util.List;
+
 import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.File;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

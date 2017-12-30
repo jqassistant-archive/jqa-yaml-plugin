@@ -1,19 +1,18 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
-import org.hamcrest.CoreMatchers;
+
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class StringValueMatcherTest {
 

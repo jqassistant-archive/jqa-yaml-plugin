@@ -3,16 +3,32 @@ package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 import java.io.IOException;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
-import com.buschmais.jqassistant.plugin.yaml.api.model.*;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLDocumentDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLFileDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyBucket;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueBucket;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
 import org.yaml.snakeyaml.emitter.Emitable;
-import org.yaml.snakeyaml.events.*;
-
-import static java.lang.String.format;
+import org.yaml.snakeyaml.events.DocumentEndEvent;
+import org.yaml.snakeyaml.events.DocumentStartEvent;
+import org.yaml.snakeyaml.events.Event;
+import org.yaml.snakeyaml.events.MappingEndEvent;
+import org.yaml.snakeyaml.events.MappingStartEvent;
+import org.yaml.snakeyaml.events.ScalarEvent;
+import org.yaml.snakeyaml.events.SequenceEndEvent;
+import org.yaml.snakeyaml.events.SequenceStartEvent;
+import org.yaml.snakeyaml.events.StreamEndEvent;
+import org.yaml.snakeyaml.events.StreamStartEvent;
 
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.EventType.MAPPING_START;
-import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.*;
-
+import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.DOCUMENT_CTX;
+import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.MAPPING_CXT;
+import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.MAPPING_KEY_CXT;
+import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.MAPPING_VALUE_CXT;
+import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.YAMLEmitter.ParseContext.SEQUENCE_CXT;
+import static java.lang.String.format;
 import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.apache.commons.lang.StringUtils.trimToEmpty;
 

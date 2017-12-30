@@ -1,8 +1,8 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner.util;
 
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
-
 import java.util.Collection;
+
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
 
 /**
  * <p>This class provides helper methods to find elements based

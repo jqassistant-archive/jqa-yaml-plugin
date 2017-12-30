@@ -1,10 +1,10 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 
-import com.buschmais.jqassistant.plugin.common.api.model.NamedDescriptor;
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
-
 import java.util.Collection;
 import java.util.NoSuchElementException;
+
+import com.buschmais.jqassistant.plugin.common.api.model.NamedDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
 public class Finders {
     /**

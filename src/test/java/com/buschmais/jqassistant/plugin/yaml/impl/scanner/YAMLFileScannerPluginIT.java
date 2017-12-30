@@ -1,5 +1,23 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 
+import java.io.File;
+import java.util.List;
+
+import com.buschmais.jqassistant.core.scanner.api.Scanner;
+import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLDocumentDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLFileDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
+import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
+
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.Finders.findKeyByName;
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.Finders.findValueByValue;
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.util.StringValueMatcher.hasValue;
@@ -8,28 +26,15 @@ import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
-
-import java.io.File;
-import java.util.List;
-
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
-import org.hamcrest.collection.IsEmptyCollection;
-import org.junit.*;
-
-import com.buschmais.jqassistant.core.scanner.api.Scanner;
-import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLDocumentDescriptor;
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLFileDescriptor;
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
-import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
 public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
