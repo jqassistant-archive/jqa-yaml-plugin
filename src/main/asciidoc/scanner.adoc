@@ -23,14 +23,14 @@ Maven it must be added to the list of dependencies as shown below.
 [source, xml]
 ----
 <plugin>
-    <groupId>com.buschmais.jqassistant.scm</groupId>
+    <groupId>com.buschmais.jqassistant/groupId>
     <artifactId>jqassistant-maven-plugin</artifactId>
     <version>{projectVersion}</version>
     <dependencies>
         <dependency>
             <groupId>com.buschmais.jqassistant.plugin</groupId>
             <artifactId>jqassistant.plugin.yaml</artifactId>
-            <version{projectVersion}</version>
+            <version>{projectVersion}</version>
         </dependency>
     </dependencies>
 </plugin>
