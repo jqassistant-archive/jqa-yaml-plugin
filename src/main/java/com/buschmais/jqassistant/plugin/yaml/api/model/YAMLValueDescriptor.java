@@ -2,14 +2,13 @@ package com.buschmais.jqassistant.plugin.yaml.api.model;
 
 import java.util.List;
 
-import com.buschmais.xo.neo4j.api.annotation.Indexed;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Property;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
 
 @Label("Value")
 public interface YAMLValueDescriptor extends YAMLDescriptor, YAMLValueBucket {
-    @Indexed
+
     @Property("value")
     String getValue();
 
