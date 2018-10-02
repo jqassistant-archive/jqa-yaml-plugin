@@ -29,13 +29,15 @@ import org.yaml.snakeyaml.serializer.Serializer;
 public class YAMLFileScannerPlugin extends AbstractScannerPlugin<FileResource, YAMLFileDescriptor> {
 
     /**
-     * Supported file extension for YAML file resources.
+     * Supported file extensions for YAML file resources.
      */
     public final static String YAML_FILE_EXTENSION = ".yaml";
+    public final static String YML_FILE_EXTENSION = ".yml";
 
     @Override
-    public boolean accepts(FileResource file, String path, Scope scope) throws IOException {
-        return path.toLowerCase().endsWith(YAML_FILE_EXTENSION);
+    public boolean accepts(FileResource file, String path, Scope scope) {
+        String lowercasePath = path.toLowerCase();
+        return lowercasePath.endsWith(YAML_FILE_EXTENSION) || lowercasePath.endsWith(YML_FILE_EXTENSION);
     }
 
     @Override
