@@ -371,14 +371,26 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
         assertThat(document.getKeys(), empty());
         assertThat(document.getValues(), hasSize(3));
 
-        YAMLValueDescriptor firstSequence = document.getValues().get(0);
-        YAMLValueDescriptor secondSequence = document.getValues().get(1);
-        YAMLValueDescriptor thirdSequence = document.getValues().get(2);
+        List<YAMLValueDescriptor> values = document.getValues();
+
+        YAMLValueDescriptor firstSequence = values.stream()
+                                                  .filter(e -> e.getValues().get(0).getValue().equals("name"))
+                                                  .findFirst()
+                                                  .orElseThrow(() -> new AssertionError("First item of the sequence not found."));
+
+        YAMLValueDescriptor secondSequence = values.stream()
+                                                   .filter(e -> e.getValues().get(0).getValue().equals("Mark McGwire"))
+                                                   .findFirst()
+                                                   .orElseThrow(() -> new AssertionError("First item of the sequence not found."));
+
+        YAMLValueDescriptor thirdSequence = values.stream()
+                                                  .filter(e -> e.getValues().get(0).getValue().equals("Sammy Sosa"))
+                                                  .findFirst()
+                                                  .orElseThrow(() -> new AssertionError("First item of the sequence not found."));
 
         assertThat(firstSequence.getValue(), nullValue());
         assertThat(firstSequence.getValues(), hasSize(3));
-        assertThat(firstSequence.getValues(), containsInAnyOrder(hasValue("name"), hasValue("hr"),
-                                                                 hasValue("avg")));
+        assertThat(firstSequence.getValues(), containsInAnyOrder(hasValue("name"), hasValue("hr"), hasValue("avg")));
 
         assertThat(secondSequence.getValue(), nullValue());
         assertThat(secondSequence.getValues(), hasSize(3));
