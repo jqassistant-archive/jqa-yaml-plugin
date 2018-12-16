@@ -7,7 +7,7 @@ import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.hamcrest.CoreMatchers.is;

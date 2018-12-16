@@ -12,16 +12,17 @@ import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.Finders.findKeyByName;
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.Finders.findValueByValue;
 import static com.buschmais.jqassistant.plugin.yaml.impl.scanner.util.StringValueMatcher.hasValue;
 import static java.lang.String.format;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -38,12 +39,12 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 
 public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
-    @Before
+    @BeforeEach
     public void startTransaction() {
         store.beginTransaction();
     }
 
-    @After
+    @AfterEach
     public void commitTransaction() {
         store.commitTransaction();
     }
@@ -95,8 +96,8 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
         YAMLValueDescriptor value = findValueByValue(key.getValues(), "value");
 
-        assertThat(value.getValue(), equalTo("value"));
-        assertThat(value.getPosition(), equalTo(0));
+        assertThat(value.getValue()).isEqualTo("value");
+        assertThat(value.getPosition()).isEqualTo(0);
     }
 
     @Test
@@ -113,7 +114,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
         assertThat(fileDescriptors, hasSize(1));
 
         YAMLFileDescriptor file = fileDescriptors.get(0);
-        assertThat(file.getDocuments(), hasSize(1));
+        assertThat(file.getDocuments()).hasSize(1);
 
         YAMLDocumentDescriptor document = file.getDocuments().get(0);
 
@@ -192,18 +193,18 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
         List<YAMLFileDescriptor> fileDescriptors =
              query("MATCH (f:YAML:File) WHERE f.fileName=~'.*/simple-list.yaml' RETURN f").getColumn("f");
 
-        assertThat(fileDescriptors, hasSize(1));
+        assertThat(fileDescriptors).hasSize(1);
         assertThat(fileDescriptors.get(0).getDocuments(), hasSize(1));
 
         YAMLDocumentDescriptor documentDescriptor = fileDescriptors.get(0).getDocuments().get(0);
 
-        assertThat(documentDescriptor.getKeys(), hasSize(1));
+        assertThat(documentDescriptor.getKeys()).hasSize(1);
         assertThat(documentDescriptor.getValues(), empty());
 
         YAMLKeyDescriptor keyDescriptor = documentDescriptor.getKeys().get(0);
 
         assertThat(keyDescriptor.getName(), equalTo("alist"));
-        assertThat(keyDescriptor.getValues(), hasSize(3));
+        assertThat(keyDescriptor.getValues()).hasSize(3);
         assertThat(keyDescriptor.getKeys(), empty());
         assertThat(keyDescriptor.getValues(), containsInAnyOrder(hasValue("a"), hasValue("b"),
                                                                  hasValue("c")));
@@ -246,11 +247,11 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
                   .getColumn("f");
 
         assertThat(fileDescriptors, not(empty()));
-        assertThat(fileDescriptors, hasSize(1));
+        assertThat(fileDescriptors).hasSize(1);
 
         YAMLFileDescriptor yamlFileDescriptor = fileDescriptors.get(0);
 
-        assertThat(yamlFileDescriptor.getDocuments(), hasSize(1));
+        assertThat(yamlFileDescriptor.getDocuments()).hasSize(1);
 
         YAMLDocumentDescriptor yamlDocumentDescriptor = yamlFileDescriptor.getDocuments().get(0);
 
@@ -291,7 +292,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
         assertThat(keyDescriptor.getName(), equalTo("server"));
         assertThat(keyDescriptor.getFullQualifiedName(), equalTo("server"));
 
-        assertThat(keyDescriptor.getKeys(), hasSize(4));
+        assertThat(keyDescriptor.getKeys()).hasSize(4);
 
         YAMLKeyDescriptor subKey1 = findKeyByName(keyDescriptor.getKeys(), "maxThreads");
         YAMLKeyDescriptor subKey2 = findKeyByName(keyDescriptor.getKeys(), "applicationConnectors");
@@ -326,8 +327,8 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
         assertThat(keyDescriptor1.getName(), equalTo("american"));
         assertThat(keyDescriptor1.getFullQualifiedName(), equalTo("american"));
-        assertThat(keyDescriptor1.getValues(), hasSize(3));
-        assertThat(keyDescriptor1.getKeys(), empty());
+        assertThat(keyDescriptor1.getValues()).hasSize(3);
+        assertThat(keyDescriptor1.getKeys()).isEmpty();
         assertThat(keyDescriptor1.getValues(), containsInAnyOrder(hasValue("Boston Red Sox"),
                                                                   hasValue("New York Yankees"),
                                                                   hasValue("Detroit Tigers")));
@@ -336,21 +337,21 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
         assertThat(keyDescriptor2.getName(), equalTo("national"));
         assertThat(keyDescriptor2.getFullQualifiedName(), equalTo("national"));
-        assertThat(keyDescriptor2.getValues(), hasSize(3));
-        assertThat(keyDescriptor2.getKeys(), empty());
+        assertThat(keyDescriptor2.getValues()).hasSize(3);
+        assertThat(keyDescriptor2.getKeys()).isEmpty();
         assertThat(keyDescriptor2.getValues(), containsInAnyOrder(hasValue("New York Mets"),
                                                                   hasValue("Chicago Cubs"),
                                                                   hasValue("Atlanta Braves")));
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanSequenceOfMappingsYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.1-example-2.4-sequence-of-mappings.yaml"},
     }
 
-    @Ignore("Test cannot succeed because of the wrong implementation of the YAML scanner.")
+    @Disabled("Test cannot succeed because of the wrong implementation of the YAML scanner.")
     @Test
     public void scanSequenceOfSequencesYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -390,7 +391,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
                                                   .orElseThrow(() -> new AssertionError("First item of the sequence not found."));
 
         assertThat(firstSequence.getValue(), nullValue());
-        assertThat(firstSequence.getValues(), hasSize(3));
+        assertThat(firstSequence.getValues()).hasSize(3);
         assertThat(firstSequence.getValues(), containsInAnyOrder(hasValue("name"), hasValue("hr"), hasValue("avg")));
 
         assertThat(secondSequence.getValue(), nullValue());
@@ -463,14 +464,14 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanlayByPlayYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.8-play-by-play.yaml"},
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanTwoDocumenstsInAStreamYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.7-two-documensts-in-a-stream.yaml"},
@@ -606,90 +607,90 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanIndentationDeterminesScopeYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.16-indentation-determines-scope.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanQuotedScalarsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.17-quoted-scalars.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanMultiLineFlowScalarsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.18-multi-line-flow-scalars.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanIntegersYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.19-integers.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanFloatingPointYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.20-floating-point.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanMiscYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.21-misc.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanTimestampsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.22-timestamps.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanVariousExplicitTagsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.23-various-explicit-tags.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
-    @Test @Ignore
+    @Test @Disabled
     public void scanGlobalTagsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.24-global-tags.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanUnorderedSetsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.25-unordered-sets.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanOrderedMappingsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.26-ordered-mappings.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanExampleInvoiceYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.5-example-2.27-invoice.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void scanLogFileYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.5-example-2.28-log-file.yaml"},
         Assert.fail("Not implemented yet!");

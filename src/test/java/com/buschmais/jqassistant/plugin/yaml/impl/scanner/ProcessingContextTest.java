@@ -3,8 +3,8 @@ package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLDocumentDescriptor;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static java.util.Collections.singletonList;
@@ -16,7 +16,7 @@ public class ProcessingContextTest {
 
     private ProcessingContext context;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         context = new ProcessingContext();
     }

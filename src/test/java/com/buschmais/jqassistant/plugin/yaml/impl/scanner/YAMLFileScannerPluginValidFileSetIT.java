@@ -1,83 +1,72 @@
 package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.stream.Stream;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLFileDescriptor;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(Parameterized.class)
 public class YAMLFileScannerPluginValidFileSetIT extends AbstractPluginIT {
 
-    private String pathToYAMLFile;
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-             {"/probes/valid/hostconfig.yaml"},
-             {"/probes/valid/simple-key-value-pair.yaml"},
-             {"/probes/valid/simple-key-value-pair-without-value.yaml"},
-             {"/probes/valid/two-simple-key-value-pairs.yaml"},
-             {"/probes/valid/simple-list.yaml"},
-             {"/probes/valid/dropwizard-configuration.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.1-sequence-of-scalars.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.2-scalars-of-scalars.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.3-mapping-scalars-to-sequences.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.4-sequence-of-mappings.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.5-sequence-of-sequences.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.1-example-2.6-mapping-of-mappings.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.2-example-2.8-play-by-play.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.2-example-2.7-two-documensts-in-a-stream.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.2-example-2.9-single-document-with-comments.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.2-example-2.10-node-for-sammy-sosa-twice.yaml"},
-             // @todo {"/probes/yamlspec/1.1/sec-2.2-example-2.11-mapping-betweend-sequences.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.2-example-2.12-in-line-nested-mapping.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.13-in-literals-newlines-preserved.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.14-in-the-plain-scalar-newline-as-spaces.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.15-folded-newlines-are-preserved.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.16-indentation-determines-scope.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.17-quoted-scalars.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.3-example-2.18-multi-line-flow-scalars.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.19-integers.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.20-floating-point.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.21-misc.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.22-timestamps.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.23-various-explicit-tags.yaml"},
-             // @todo {"/probes/yamlspec/1.1/sec-2.4-example-2.24-global-tags.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.25-unordered-sets.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.4-example-2.26-ordered-mappings.yaml"},
-             // @todo {"/probes/yamlspec/1.1/sec-2.5-example-2.27-invoice.yaml"},
-             {"/probes/yamlspec/1.1/sec-2.5-example-2.28-log-file.yaml"},
-        });
+    public static Stream<String> data() {
+        return Stream.of("/probes/valid/hostconfig.yaml",
+             "/probes/valid/simple-key-value-pair.yaml",
+             "/probes/valid/simple-key-value-pair-without-value.yaml",
+             "/probes/valid/two-simple-key-value-pairs.yaml",
+             "/probes/valid/simple-list.yaml",
+             "/probes/valid/dropwizard-configuration.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.1-sequence-of-scalars.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.2-scalars-of-scalars.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.3-mapping-scalars-to-sequences.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.4-sequence-of-mappings.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.5-sequence-of-sequences.yaml",
+             "/probes/yamlspec/1.1/sec-2.1-example-2.6-mapping-of-mappings.yaml",
+             "/probes/yamlspec/1.1/sec-2.2-example-2.8-play-by-play.yaml",
+             "/probes/yamlspec/1.1/sec-2.2-example-2.7-two-documensts-in-a-stream.yaml",
+             "/probes/yamlspec/1.1/sec-2.2-example-2.9-single-document-with-comments.yaml",
+             "/probes/yamlspec/1.1/sec-2.2-example-2.10-node-for-sammy-sosa-twice.yaml",
+             // @todo {"/probes/yamlspec/1.1/sec-2.2-example-2.11-mapping-betweend-sequences.yaml",
+             "/probes/yamlspec/1.1/sec-2.2-example-2.12-in-line-nested-mapping.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.13-in-literals-newlines-preserved.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.14-in-the-plain-scalar-newline-as-spaces.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.15-folded-newlines-are-preserved.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.16-indentation-determines-scope.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.17-quoted-scalars.yaml",
+             "/probes/yamlspec/1.1/sec-2.3-example-2.18-multi-line-flow-scalars.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.19-integers.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.20-floating-point.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.21-misc.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.22-timestamps.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.23-various-explicit-tags.yaml",
+             // @todo {"/probes/yamlspec/1.1/sec-2.4-example-2.24-global-tags.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.25-unordered-sets.yaml",
+             "/probes/yamlspec/1.1/sec-2.4-example-2.26-ordered-mappings.yaml",
+             // @todo {"/probes/yamlspec/1.1/sec-2.5-example-2.27-invoice.yaml",
+             "/probes/yamlspec/1.1/sec-2.5-example-2.28-log-file.yaml");
     }
 
-    @Before
+    @BeforeEach
     public void startTransaction() {
         store.beginTransaction();
     }
 
-    @After
+    @AfterEach
     public void commitTransaction() {
         store.commitTransaction();
     }
 
-    public YAMLFileScannerPluginValidFileSetIT(String file) {
-        pathToYAMLFile = file;
-    }
-
-    @Test
-    public void canLoadYAMLFile() {
+    @MethodSource("data")
+    @ParameterizedTest
+    public void canLoadYAMLFile(String pathToYAMLFile) {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class), pathToYAMLFile);
 
         Scanner scanner = getScanner();

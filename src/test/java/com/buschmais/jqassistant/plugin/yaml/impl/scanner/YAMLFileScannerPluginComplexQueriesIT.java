@@ -7,21 +7,21 @@ import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLKeyDescriptor;
 import com.buschmais.jqassistant.plugin.yaml.api.model.YAMLValueDescriptor;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
 public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
-    @Before
+    @BeforeEach
     public void startTransaction() {
         store.beginTransaction();
     }
 
-    @After
+    @AfterEach
     public void commitTransaction() {
         store.commitTransaction();
     }
