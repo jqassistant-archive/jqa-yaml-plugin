@@ -40,7 +40,7 @@ Maven it must be added to the list of dependencies as shown below.
 
 A file with the file extension `.yaml` containing zero or more YAML documents.
 
-.Relations of `:File:Xml`
+.Relations of `:File:YAML`
 [options="header"]
 |====
 | Name              | Target label(s)    | Cardinality    | Description
