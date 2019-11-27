@@ -2,6 +2,7 @@ package com.buschmais.jqassistant.plugin.yaml.impl.scanner;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT;
@@ -27,11 +28,8 @@ import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
@@ -137,13 +135,11 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
         getScanner().scan(yamlFile, yamlFile.getAbsolutePath(), null);
 
         // Must return an empty result set as there is not YAML value node
-        List<YAMLFileDescriptor> fileDescriptors =
-             query("MATCH (f:YAML:File)-[:CONTAINS_DOCUMENT]->(d)-[:CONTAINS_KEY]->(k:YAML:Key {name: 'b'})" +
-                   "-[:CONTAINS_VALUE]->(value:YAML:Value) " +
-                   "WHERE f.fileName=~'.*/probes/valid/simple-key-value-pair-without-value.yaml' RETURN f")
-                .getColumn("f");
+        List<Map<String, Object>> rows = query("MATCH (f:YAML:File)-[:CONTAINS_DOCUMENT]->(d)-[:CONTAINS_KEY]->(k:YAML:Key {name: 'b'})"
+                + "-[:CONTAINS_VALUE]->(value:YAML:Value) " + "WHERE f.fileName=~'.*/probes/valid/simple-key-value-pair-without-value.yaml' RETURN f")
+                        .getRows();
 
-        assertThat(fileDescriptors, nullValue());
+        assertThat(rows, empty());
     }
 
 
@@ -771,11 +767,9 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
         assertThat(fileDescriptor.isValid(), is(false));
 
-        List<YAMLFileDescriptor> childNodes =
-             query(format("MATCH (f:YAML:File)-[*]->(c) WHERE f.fileName=~'.*/%s' RETURN c", fileName))
-                  .getColumn("c");
+        List<Map<String, Object>> rows = query(format("MATCH (f:YAML:File)-[*]->(c) WHERE f.fileName=~'.*/%s' RETURN c", fileName)).getRows();
 
-        assertThat(childNodes, anyOf(empty(), nullValue()));
+        assertThat(rows, empty());
     }
 
     @Test
@@ -829,10 +823,8 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
         assertThat(fileDescriptor.isValid(), is(false));
 
-        List<YAMLFileDescriptor> childNodes =
-             query(format("MATCH (f:YAML:File)-[*]->(c) WHERE f.fileName=~'.*/%s' RETURN c", fileName))
-                  .getColumn("c");
+        List<Map<String, Object>> rows = query(format("MATCH (f:YAML:File)-[*]->(c) WHERE f.fileName=~'.*/%s' RETURN c", fileName)).getRows();
 
-        assertThat(childNodes, anyOf(empty(), nullValue()));
+        assertThat(rows, empty());
     }
 }
