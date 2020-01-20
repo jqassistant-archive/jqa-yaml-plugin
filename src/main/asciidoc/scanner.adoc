@@ -36,7 +36,7 @@ Maven it must be added to the list of dependencies as shown below.
 </plugin>
 ----
 
-=== Nodes labled with `:File:YAML`
+=== Nodes labeled with `:File:YAML`
 
 A file with the file extension `.yaml` containing zero or more YAML documents.
 
@@ -74,7 +74,7 @@ when writing your queries.
 |===
 
 [[:Key:YAML]]
-=== Nodes labled with `:Key:YAML`
+=== Nodes labeled with `:Key:YAML`
 
 .Properties of `:Key:YAML`
 [options="header"]
@@ -95,7 +95,7 @@ when writing your queries.
 
 
 [[:Value:YAML]]
-=== Nodes labled with `:Value:YAML`
+=== Nodes labeled with `:Value:YAML`
 
 Nodes tagged with `:Value:YAML` represents YAML scalars assigned to a <<:Key:YAML>>.
 
