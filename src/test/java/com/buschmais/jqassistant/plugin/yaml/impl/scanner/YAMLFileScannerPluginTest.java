@@ -8,7 +8,7 @@ import com.buschmais.jqassistant.plugin.common.api.scanner.filesystem.FileResour
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class YAMLFileScannerPluginTest {
