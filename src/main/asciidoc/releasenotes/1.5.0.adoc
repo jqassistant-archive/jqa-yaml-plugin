@@ -1,8 +1,0 @@
-//
-//
-//
-ifndef::jqa-in-manual[== Version 1.5.0]
-ifdef::jqa-in-manual[== YAML Plugin 1.5.0]
-
-* The YAML scanner now also accepts `yml` files
-* Removed index from property `value` of `:Value` labeled nodes to avoid problems with large strings and Neo4j 3.4 indexes
