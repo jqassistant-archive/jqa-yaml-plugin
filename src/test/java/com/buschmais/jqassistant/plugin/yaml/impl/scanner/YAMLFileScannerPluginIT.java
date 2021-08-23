@@ -35,21 +35,21 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 
-public class YAMLFileScannerPluginIT extends AbstractPluginIT {
+class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
     @BeforeEach
-    public void startTransaction() {
+    void startTransaction() {
         store.beginTransaction();
     }
 
     @AfterEach
-    public void commitTransaction() {
+    void commitTransaction() {
         store.commitTransaction();
     }
 
 
     @Test
-    public void scanReturnsFileDescriptorWithCorrectFileName() {
+    void scanReturnsFileDescriptorWithCorrectFileName() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/simple-key-value-pair.yaml");
 
@@ -65,7 +65,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
 
     @Test
-    public void scanSimpleKeyValuePairYAML() {
+    void scanSimpleKeyValuePairYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/simple-key-value-pair.yaml");
 
@@ -99,7 +99,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanSimpleKeyValuePairWithoutValueYAML() {
+    void scanSimpleKeyValuePairWithoutValueYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/simple-key-value-pair-without-value.yaml");
 
@@ -128,7 +128,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanSimpleKeyValuePairWithoutValueYAMLCyperDoesNotFindValueNode() {
+    void scanSimpleKeyValuePairWithoutValueYAMLCyperDoesNotFindValueNode() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/simple-key-value-pair-without-value.yaml");
 
@@ -144,7 +144,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
 
     @Test
-    public void scanTwoSimpleKeyValuePairsYAML() {
+    void scanTwoSimpleKeyValuePairsYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/two-simple-key-value-pairs.yaml");
 
@@ -180,7 +180,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
 
     @Test
-    public void scanSimpleListYAML() {
+    void scanSimpleListYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/simple-list.yaml");
 
@@ -207,7 +207,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanSequenceOfScalarsYAML() {
+    void scanSequenceOfScalarsYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/sec-2.1-example-2.1-sequence-of-scalars.yaml");
 
@@ -232,7 +232,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanScalarsOfScalarsYAML() {
+    void scanScalarsOfScalarsYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/sec-2.1-example-2.2-scalars-of-scalars.yaml");
 
@@ -264,7 +264,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanValidDropWizardConfigYAML() {
+    void scanValidDropWizardConfigYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -302,7 +302,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanMappingScalarsToSequencesYAML() {
+    void scanMappingScalarsToSequencesYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/sec-2.1-example-2.3-mapping-scalars-to-sequences.yaml");
 
@@ -342,14 +342,14 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
     @Test
     @Disabled
-    public void scanSequenceOfMappingsYAML() {
+    void scanSequenceOfMappingsYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.1-example-2.4-sequence-of-mappings.yaml"},
     }
 
     @Disabled("Test cannot succeed because of the wrong implementation of the YAML scanner.")
     @Test
-    public void scanSequenceOfSequencesYAML() {
+    void scanSequenceOfSequencesYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/sec-2.1-example-2.5-sequence-of-sequences.yaml");
 
@@ -400,7 +400,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanMappingOfMappingsYAML() {
+    void scanMappingOfMappingsYAML() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/sec-2.1-example-2.6-mapping-of-mappings.yaml");
 
@@ -461,20 +461,20 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
     @Test
     @Disabled
-    public void scanlayByPlayYAML() {
+    void scanlayByPlayYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.8-play-by-play.yaml"},
     }
 
     @Test
     @Disabled
-    public void scanTwoDocumenstsInAStreamYAML() {
+    void scanTwoDocumenstsInAStreamYAML() {
         Assert.fail("Not implemented yet!");
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.7-two-documensts-in-a-stream.yaml"},
     }
 
     @Test
-    public void scanSingleDocumentWithCommentsYAML() {
+    void scanSingleDocumentWithCommentsYAML() {
         String fileName = "sec-2.2-example-2.9-single-document-with-comments.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -500,7 +500,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanNodeForSammySosaTwice() {
+    void scanNodeForSammySosaTwice() {
         String fileName = "sec-2.2-example-2.10-node-for-sammy-sosa-twice.yaml";
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/yamlspec/1.1/" + fileName);
@@ -536,23 +536,23 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
 //    @Test
-//    public void scan//             {"/probes/yamlspec/1.1/sec-2.2-example-2.11-mapping-betweend-sequences.yaml"},
+//    void scan//             {"/probes/yamlspec/1.1/sec-2.2-example-2.11-mapping-betweend-sequences.yaml"},
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.11-mapping-betweend-sequences.yaml"},
 
 //    @Test
-//    public void scan//             {"/probes/yamlspec/1.1/sec-2.2-example-2.12-in-line-nested-mapping.yaml"},
+//    void scan//             {"/probes/yamlspec/1.1/sec-2.2-example-2.12-in-line-nested-mapping.yaml"},
 //             {"/probes/yamlspec/1.1/sec-2.2-example-2.12-in-line-nested-mapping.yaml"},
 
 //    @Test
-//    public void scan//             {"/probes/yamlspec/1.1/sec-2.3-example-2.13-in-literals-newlines-preserved.yaml"},
+//    void scan//             {"/probes/yamlspec/1.1/sec-2.3-example-2.13-in-literals-newlines-preserved.yaml"},
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.13-in-literals-newlines-preserved.yaml"},
 
 //    @Test
-//    public void scan//             {"/probes/yamlspec/1.1/sec-2.3-example-2.14-in-the-plain-scalar-newline-as-spaces.yaml"},
+//    void scan//             {"/probes/yamlspec/1.1/sec-2.3-example-2.14-in-the-plain-scalar-newline-as-spaces.yaml"},
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.14-in-the-plain-scalar-newline-as-spaces.yaml"},
 
     @Test
-    public void scanFoldedNewLinesArePreserved() {
+    void scanFoldedNewLinesArePreserved() {
         String fileName = "sec-2.3-example-2.15-folded-newlines-are-preserved.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -604,96 +604,96 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
 
     @Test
     @Disabled
-    public void scanIndentationDeterminesScopeYAML() {
+    void scanIndentationDeterminesScopeYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.16-indentation-determines-scope.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanQuotedScalarsYAML() {
+    void scanQuotedScalarsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.17-quoted-scalars.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanMultiLineFlowScalarsYAML() {
+    void scanMultiLineFlowScalarsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.3-example-2.18-multi-line-flow-scalars.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanIntegersYAML() {
+    void scanIntegersYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.19-integers.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanFloatingPointYAML() {
+    void scanFloatingPointYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.20-floating-point.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanMiscYAML() {
+    void scanMiscYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.21-misc.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanTimestampsYAML() {
+    void scanTimestampsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.22-timestamps.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanVariousExplicitTagsYAML() {
+    void scanVariousExplicitTagsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.23-various-explicit-tags.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test @Disabled
-    public void scanGlobalTagsYAML() {
+    void scanGlobalTagsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.24-global-tags.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanUnorderedSetsYAML() {
+    void scanUnorderedSetsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.25-unordered-sets.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanOrderedMappingsYAML() {
+    void scanOrderedMappingsYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.4-example-2.26-ordered-mappings.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanExampleInvoiceYAML() {
+    void scanExampleInvoiceYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.5-example-2.27-invoice.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
     @Disabled
-    public void scanLogFileYAML() {
+    void scanLogFileYAML() {
 //             {"/probes/yamlspec/1.1/sec-2.5-example-2.28-log-file.yaml"},
         Assert.fail("Not implemented yet!");
     }
 
     @Test
-    public void scanAnInvalidMappingAndParsedIsFalse() {
+    void scanAnInvalidMappingAndParsedIsFalse() {
         String fileName = "invalid-mapping.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -713,7 +713,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void scanAnValidMappingAndParsedIsTrue() {
+    void scanAnValidMappingAndParsedIsTrue() {
         String fileName = "simple-list.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -733,7 +733,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void invalidDocumentInHostConfigInvalidLeedsToParsingError() {
+    void invalidDocumentInHostConfigInvalidLeedsToParsingError() {
         String fileName = "hostconfig-invalid.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -751,7 +751,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void ifParsingFailsThereWillBeNoNodesForTheContentOfTheYAMLFile() {
+    void ifParsingFailsThereWillBeNoNodesForTheContentOfTheYAMLFile() {
         String fileName = "hostconfig-invalid.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -773,7 +773,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void ifParsingFailsThePropertyInvalidWillBeTrue() {
+    void ifParsingFailsThePropertyInvalidWillBeTrue() {
         String fileName = "hostconfig-invalid.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -790,7 +790,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void ifParsingSuccedsThePropertyValidWillBeTrue() {
+    void ifParsingSuccedsThePropertyValidWillBeTrue() {
         String fileName = "simple-list.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
@@ -807,7 +807,7 @@ public class YAMLFileScannerPluginIT extends AbstractPluginIT {
     }
 
     @Test
-    public void ifParsingFailsThereWillBeNoNodesForTheContentOfTheSecondYAMLDocument() {
+    void ifParsingFailsThereWillBeNoNodesForTheContentOfTheSecondYAMLDocument() {
         String fileName = "hostconfig-2-invalid.yaml";
 
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),

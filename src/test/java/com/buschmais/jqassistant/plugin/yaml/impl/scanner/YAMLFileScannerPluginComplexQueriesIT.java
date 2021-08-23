@@ -15,19 +15,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
-public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
+class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     @BeforeEach
-    public void startTransaction() {
+    void startTransaction() {
         store.beginTransaction();
     }
 
     @AfterEach
-    public void commitTransaction() {
+    void commitTransaction() {
         store.commitTransaction();
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForNumberOfKeysInFile() {
+    void queryValidDropWizardConfigYAMLForNumberOfKeysInFile() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -41,7 +41,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForKeyMaxThreadsByName() {
+    void queryValidDropWizardConfigYAMLForKeyMaxThreadsByName() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -56,7 +56,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForKeyMaxThreadsByFQN() {
+    void queryValidDropWizardConfigYAMLForKeyMaxThreadsByFQN() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -72,7 +72,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForKeyMaxThreadsByParentChildRelation() {
+    void queryValidDropWizardConfigYAMLForKeyMaxThreadsByParentChildRelation() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -90,7 +90,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
 
 
     @Test
-    public void queryValidDropWizardConfigYAMLForTresholdByFullPath() {
+    void queryValidDropWizardConfigYAMLForTresholdByFullPath() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -114,7 +114,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForValueOFFViaPath() {
+    void queryValidDropWizardConfigYAMLForValueOFFViaPath() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 
@@ -135,7 +135,7 @@ public class YAMLFileScannerPluginComplexQueriesIT extends AbstractPluginIT {
     }
 
     @Test
-    public void queryValidDropWizardConfigYAMLForValueOFF() {
+    void queryValidDropWizardConfigYAMLForValueOFF() {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class),
                                  "/probes/valid/dropwizard-configuration.yaml");
 

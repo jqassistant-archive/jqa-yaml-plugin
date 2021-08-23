@@ -15,9 +15,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class YAMLFileScannerPluginValidFileSetIT extends AbstractPluginIT {
+class YAMLFileScannerPluginValidFileSetIT extends AbstractPluginIT {
 
-    public static Stream<String> data() {
+    static Stream<String> data() {
         return Stream.of("/probes/valid/hostconfig.yaml",
              "/probes/valid/simple-key-value-pair.yaml",
              "/probes/valid/simple-key-value-pair-without-value.yaml",
@@ -55,18 +55,18 @@ public class YAMLFileScannerPluginValidFileSetIT extends AbstractPluginIT {
     }
 
     @BeforeEach
-    public void startTransaction() {
+    void startTransaction() {
         store.beginTransaction();
     }
 
     @AfterEach
-    public void commitTransaction() {
+    void commitTransaction() {
         store.commitTransaction();
     }
 
     @MethodSource("data")
     @ParameterizedTest
-    public void canLoadYAMLFile(String pathToYAMLFile) {
+    void canLoadYAMLFile(String pathToYAMLFile) {
         File yamlFile = new File(getClassesDirectory(YAMLFileScannerPluginValidFileSetIT.class), pathToYAMLFile);
 
         Scanner scanner = getScanner();

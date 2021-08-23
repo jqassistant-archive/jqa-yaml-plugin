@@ -11,12 +11,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 
-public class YAMLFileScannerPluginTest {
+class YAMLFileScannerPluginTest {
 
     private YAMLFileScannerPlugin plugin = new YAMLFileScannerPlugin();
 
     @Test
-    public void acceptsYamlAndYml() throws IOException {
+    void acceptsYamlAndYml() throws IOException {
         assertThat(plugin.accepts(mock(FileResource.class), "/test.yaml", DefaultScope.NONE), equalTo(true));
         assertThat(plugin.accepts(mock(FileResource.class), "/test.yml", DefaultScope.NONE), equalTo(true));
         assertThat(plugin.accepts(mock(FileResource.class), "/test.xml", DefaultScope.NONE), equalTo(false));

@@ -12,23 +12,23 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.doReturn;
 
-public class ProcessingContextTest {
+class ProcessingContextTest {
 
     private ProcessingContext context;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         context = new ProcessingContext();
     }
 
     @Test
-    public void isContextReturnsFalseIfEventContextStackIsEmpty() {
+    void isContextReturnsFalseIfEventContextStackIsEmpty() {
         assertThat(context.isContext(YAMLEmitter.ParseContext.MAPPING_CXT),
                    equalTo(false));
     }
 
     @Test
-    public void buildNextFQNWorksForLongName() {
+    void buildNextFQNWorksForLongName() {
         YAMLDocumentDescriptor docDescriptor = Mockito.mock(YAMLDocumentDescriptor.class);
 
         YAMLKeyDescriptor keyADescriptor = Mockito.mock(YAMLKeyDescriptor.class);
@@ -61,7 +61,7 @@ public class ProcessingContextTest {
     }
 
     @Test
-    public void isContextReturnsFalseIfRequestedContextPathIfLongerThenActualStack() {
+    void isContextReturnsFalseIfRequestedContextPathIfLongerThenActualStack() {
         context.pushContextEvent(YAMLEmitter.ParseContext.DOCUMENT_CTX);
         context.pushContextEvent(YAMLEmitter.ParseContext.MAPPING_CXT);
 
@@ -71,7 +71,7 @@ public class ProcessingContextTest {
     }
 
     @Test
-    public void isContextReturnsTrueIfRequestedPathAndActualStackAreIdentically() {
+    void isContextReturnsTrueIfRequestedPathAndActualStackAreIdentically() {
         context.pushContextEvent(YAMLEmitter.ParseContext.DOCUMENT_CTX);
         context.pushContextEvent(YAMLEmitter.ParseContext.MAPPING_CXT);
         context.pushContextEvent(YAMLEmitter.ParseContext.SEQUENCE_CXT);
@@ -82,7 +82,7 @@ public class ProcessingContextTest {
     }
 
     @Test
-    public void isContextReturnsFalseIfRequestedPathAndActualStackDifferInOneElement() {
+    void isContextReturnsFalseIfRequestedPathAndActualStackDifferInOneElement() {
         context.pushContextEvent(YAMLEmitter.ParseContext.DOCUMENT_CTX);
         context.pushContextEvent(YAMLEmitter.ParseContext.MAPPING_CXT);
         context.pushContextEvent(YAMLEmitter.ParseContext.SEQUENCE_CXT);
