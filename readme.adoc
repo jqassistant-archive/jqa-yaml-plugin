@@ -1,6 +1,6 @@
 = jQAssistant YAML Plugin
 
-This is the http://yaml.org/[YAML^] Plugin of https://www.jqassistant.org[jQAssistant^].
+This is the http://yaml.org/[YAML^] Plugin of https://jqassistant.org[jQAssistant^].
 It enables jQAssistant to scan and to analyze YAML documents.
 
-For more information on jQAssistant see https://www.jqassistant.org[^].
+For more information on jQAssistant see https://jqassistant.org[^].
