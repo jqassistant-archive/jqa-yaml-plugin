@@ -1,5 +1,7 @@
 = jQAssistant YAML Plugin
 
+NOTE:: This project has been archived and is no longer actively developed. Please refer to the new https://github.com/jQAssistant/jqa-yaml2-plugin[YAML plugin].
+
 This is the http://yaml.org/[YAML^] Plugin of https://jqassistant.org[jQAssistant^].
 It enables jQAssistant to scan and to analyze YAML documents.
 
